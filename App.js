@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import SearchBar from './components/SearchBar';
-import CustomButton from './components/CustomButton';
-import PlaylistContainer from './components/PlaylistContainer';
+import { useEffect, useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import SearchBar from "./components/SearchBar";
+import CustomButton from "./components/CustomButton";
+import PlaylistContainer from "./components/PlaylistContainer";
 
 function App() {
   // NOTE: Spotify credential values have been omitted due to security reasons.
   //       Please refer to the README.md file for instructions for this app.
   // API variables
-  const CLIENT_ID = 'YOUR_CLIENT_ID_HERE';
-  const CLIENT_SECRET = 'YOUR_CLIENT_SECRET_HERE';
+  const CLIENT_ID = "5555421d488245cab95c4414a006ba82";
+  const CLIENT_SECRET = "7a8de0799c71453385d0ed38f208bcb6";
 
   // useStates for app
   const [token, setToken] = useState(null);
@@ -21,18 +21,18 @@ function App() {
    */
   useEffect(() => {
     const authOptions = {
-      url: 'https://accounts.spotify.com/api/token',
+      url: "https://accounts.spotify.com/api/token",
       headers: {
-        Authorization: 'Basic ' + btoa(CLIENT_ID + ':' + CLIENT_SECRET),
-        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: "Basic " + btoa(CLIENT_ID + ":" + CLIENT_SECRET),
+        "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        grant_type: 'client_credentials',
+        grant_type: "client_credentials",
       }).toString(),
     };
 
     fetch(authOptions.url, {
-      method: 'POST',
+      method: "POST",
       headers: authOptions.headers,
       body: authOptions.body,
     })
@@ -43,10 +43,10 @@ function App() {
           //console.log('Access Token:', data.access_token);
           //console.log('Token data:', data.token_type);
         } else {
-          console.error('Token not received:', data);
+          console.error("Token not received:", data);
         }
       })
-      .catch((error) => console.error('Error fetching token:', error));
+      .catch((error) => console.error("Error fetching token:", error));
   }, []);
 
   /**
@@ -54,7 +54,7 @@ function App() {
    */
   const searchQuery = async () => {
     if (!token) {
-      console.error('ERROR: No token found');
+      console.error("ERROR: No token found");
       return;
     }
 
@@ -73,9 +73,9 @@ function App() {
       const data = await response.json();
       setPlaylists(data.playlists.items);
 
-      console.log('Playlists', data.playlists.items);
+      console.log("Playlists", data.playlists.items);
     } catch (error) {
-      console.error('ERROR: ', error);
+      console.error("ERROR: ", error);
     }
   };
 
@@ -83,7 +83,7 @@ function App() {
    * Reset search results
    */
   const resetSearch = () => {
-    setSearch('');
+    setSearch("");
     setPlaylists([]);
   };
 
@@ -107,22 +107,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#131842',
-    justifyContent: 'center',
+    backgroundColor: "#131842",
+    justifyContent: "center",
   },
 
   header: {
     fontSize: 40,
-    color: '#E68369',
-    fontWeight: 'bold',
+    color: "#E68369",
+    fontWeight: "bold",
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: "center",
   },
 
   buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
   },
 });
 export default App;
