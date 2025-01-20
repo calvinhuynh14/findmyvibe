@@ -8,8 +8,8 @@ function App() {
   // NOTE: Spotify credential values have been omitted due to security reasons.
   //       Please refer to the README.md file for instructions for this app.
   // API variables
-  const CLIENT_ID = "5555421d488245cab95c4414a006ba82";
-  const CLIENT_SECRET = "7a8de0799c71453385d0ed38f208bcb6";
+  const CLIENT_ID = "YOUR_SPOTIFY_CRED";
+  const CLIENT_SECRET = "YOUR_SPOTIFY_CRED";
 
   // useStates for app
   const [token, setToken] = useState(null);
